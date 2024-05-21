@@ -28,11 +28,20 @@ header{
     top: 0;
     left: 0;
     width: 100%;
+
+    z-index: 2;
 }
 
 a{
     text-decoration: none; /* Saca el subrallado de los "a" */
     color: white;
+}
+
+.productos{
+    display: flex;          /*permite que los elementos se alineen de manera horizontal*/
+    flex-wrap: wrap;        /*si los elementos exceden el limite, se hace un salto de linea en vez de cambiarles el tamaño*/
+    justify-content: flex-start;        /*se posicionan al inicio del contenedor (x=0 y=0 (? )*/
+    align-items: flex-start;        /*se alinean al inicio del contenedor (creo que en este caso da igual)*/
 }
 
 .logo{
@@ -68,13 +77,82 @@ nav a:hover{
     width: 100%;
 }
 
-.img-hamburguesa{
-    height: 450px;
-    width: 450px;
+
+/*H*/
+
+
+.container {
+    position: relative;         /*para que el posicionamiento de los hijos sea respecto a este elemento*/
+
+    width: 420px;
+    height: 420px;
     border-radius: 350px;
-    border: 15px solid white;
-    margin-left: 100px;
+    border: 15px solid white;    
+
+    perspective: 1000px;        /*da la sensacion de 3D*/
+
+    border-radius: 50%;         /*para que sea un circulo*/
+    background-color: #E9D331; 
+
+    float: left;
+    margin-right: 15px;  
+
+    min-width: 420px;
+    min-height: 420px;
 }
+
+
+.img-hamburguesa, .back {
+    position: absolute;         /*posicionamiento absoluto pero dentro del container*/
+    
+    width: 100%;                /*abarcan todo el contenido del conteiner*/
+    height: 100%;
+    border-radius: 50%;
+    backface-visibility: hidden;            /*para que al darse vuelta desaparezca y se vea el circulo naranja*/
+    transition: transform 1s ease-in-out;       /*duracion de la animacion*/
+}
+  
+.img-hamburguesa {
+    z-index: 1;
+}
+  
+.back {
+    text-align: center;
+    color: white;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+  
+.container:hover .img-hamburguesa {
+    transform: rotateY(180deg);             /*al pasar el mouse por encima se rota 180°*/
+}
+  
+.price{
+    position: absolute;             /* posicionamiento absoluto pero dentro del container */
+    top: 20%;
+    left: 50%;                      /* centrar horizontalmente */
+    transform: translateX(-50%);    /* centrar horizontalmente */ 
+    font-family: "Oswald", sans-serif;
+    color: black;
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
+.cart{
+    position: absolute;               /* posicionamiento absoluto pero dentro del container */
+    bottom: 10%;
+    left: 50%;                          /* centrar horizontalmente */ 
+    transform: translateX(-50%);        /* centrar horizontalmente */ 
+    color: white;
+    background-color: rgb(0, 0, 0);
+    font-family: "Oswald", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 30%;
+}
+
 
 .nombre{
     margin-top: 150px;
@@ -86,17 +164,21 @@ nav a:hover{
 
 .ingredientes{
     font-size: 25px;
-    width: 60%;
     font-weight: 500;
     font-family: "Oswald", sans-serif;
     text-align: center;
+    
 }
+
+
+/*H1*/
 
 
 .hamburguesa-1{
     display: flex;
+    margin: 0px auto;
+    width: 80%;
 }
-
 
 .hamburguesa-1 div{
     display: flex;
@@ -105,8 +187,11 @@ nav a:hover{
 }
 
 .hamburguesa-1 .nombre{
-    margin-top: 120px;
+    margin-top: 80px;
 }
+
+
+/*H2*/
 
 
 .hamburguesa-2{
@@ -116,6 +201,20 @@ nav a:hover{
     background-size: cover;
 }
 
+.hamburguesa-2 .container{
+    background-color: rgb(0, 0, 0);
+    margin-left: 15px;
+    margin-right: 100px;
+}
+
+
+.hamburguesa-2 .cart{
+    background-color: #E9D331;
+}
+
+.hamburguesa-2 .price{
+    color: white;
+}
 
 .hamburguesa-2 div{
     display: flex;
@@ -124,18 +223,19 @@ nav a:hover{
 }
 
 .hamburguesa-2 .ingredientes{
+    width: 50%;
     color: white;
 }
 
 
 .hamburguesa-2 .nombre{
+    margin-right: 0px;
     color: white;
 }
 
-.hamburguesa-2 .img-hamburguesa{
-    margin-left: 0px;
-    margin-right: 100px;
-}
+
+
+
 
 .aperitivos-extras{
     display: flex;
